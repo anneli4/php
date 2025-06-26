@@ -1,5 +1,6 @@
 <?php
-    $name ='Anneli';
+    $name ='Anneli P';
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +10,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello Anneli</h1>
+    <h1>Hello <?=$name?></h1>
+    <ul>
+        <?php for($i = 0; $i < 10; $i++): ?>
+            <li>Item <?=$i?></li>
+        <?php endfor ?>
+    </ul>
 </body>
 </html>
