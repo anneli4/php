@@ -1,3 +1,22 @@
+ <?php
+    $heroTitle = 'World news';
+    $posts = [
+        [
+            'title' => 'Blogi 1',
+            'date' => 'July 1, 2025',
+            'author' => 'Anneli',
+            'content' => 'See on minu esimene postitus. Tere tulemast!'
+        ],
+        [
+            'title' => 'Blogi 2',
+            'date' => 'July 2, 2025',
+            'author' => 'Anneli',
+            'content' => 'Täna oli päikseline päev.'
+        ],
+
+    ];
+    ?>
+
  <?php include 'partials/header.php' ?>
 
 
