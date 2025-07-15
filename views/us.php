@@ -1,21 +1,4 @@
- <?php
- $heroTitle = 'U.S. news';
- $posts = [
-    [
-        'title' => 'U.S esimene blogi',
-        'date' => 'July 1, 2025',
-        'author' => 'Anneli',
-        'content' => 'See on minu esimene postitus. Tere tulemast!'
-    ],
-    [
-        'title' => 'U.S. teine blogi',
-        'date' => 'July 2, 2025',
-        'author' => 'Anneli',
-        'content' => 'Täna oli päikseline päev ja ma kirjutasin natuke PHP-d.'
-    ]
-];
-    
-    ?>
+
 
 
  <?php include 'partials/header.php' ?>

@@ -99,6 +99,6 @@
 </head>
 
 <body>
-     <?php include 'partials/themeswitcher.php' ?>
-     <?php include 'partials/icons.php' ?>
-     <?php include 'partials/navbar.php' ?>
+     <?php include __DIR__ . '/themeswitcher.php' ?>
+     <?php include __DIR__ . '/icons.php' ?>
+     <?php include __DIR__ . '/navbar.php' ?>
