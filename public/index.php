@@ -4,6 +4,21 @@
 if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
     return false;  
 }
+
+spl_autoload_register(function($class) {
+    $parts = explode('\\', $class);
+    array_shift($parts); // Remove the namespace part
+    $class = implode($parts);
+    require_once __DIR__ . '/../src/' . $class . '.php';
+
+});
+
+
+
+$router = new App\Router();
+$db = new App\DB();
+var_dump($router, $db);
+
 $request = $_SERVER['REQUEST_URI'];
 
 switch ($request) {
