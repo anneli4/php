@@ -8,16 +8,18 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
 spl_autoload_register(function($class) {
     $parts = explode('\\', $class);
     array_shift($parts); // Remove the namespace part
-    $class = implode($parts);
+    $class = implode('/', $parts);
     require_once __DIR__ . '/../src/' . $class . '.php';
 
 });
 
-
+use App\Controllers\Router as CRouter;
+use App\Router;
 
 $router = new App\Router();
+$router2 = new App\Controllers\Router();
 $db = new App\DB();
-var_dump($router, $db);
+var_dump($router, $router2, $db);
 
 $request = $_SERVER['REQUEST_URI'];
 
