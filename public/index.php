@@ -13,56 +13,25 @@ spl_autoload_register(function($class) {
 
 });
 
-use App\Controllers\Router as CRouter;
-use App\Router;
 
-$router = new App\Router();
-$router2 = new App\Controllers\Router();
-$db = new App\DB();
-var_dump($router, $router2, $db);
+require_once __DIR__ . '/../helpers.php';
+require_once __DIR__ . '/../routes.php';
 
-$request = $_SERVER['REQUEST_URI'];
-
-switch ($request) {
-    case '/':
-        $heroTitle = 'World news';
-    $posts = [
-        [
-            'title' => 'Blogi 1',
-            'date' => 'July 1, 2025',
-            'author' => 'Anneli',
-            'content' => 'See on minu esimene postitus. Tere tulemast!'
-        ],
-        [
-            'title' => 'Blogi 2',
-            'date' => 'July 2, 2025',
-            'author' => 'Anneli',
-            'content' => 'Täna oli päikseline päev.'
-        ],
-
-    ];
-        include __DIR__ . '/../views/index.php';
-        break;
-    case '/us':
-        $heroTitle = 'U.S. news';
- $posts = [
-    [
-        'title' => 'U.S esimene blogi',
-        'date' => 'July 1, 2025',
-        'author' => 'Anneli',
-        'content' => 'See on minu esimene postitus. Tere tulemast!'
-    ],
-    [
-        'title' => 'U.S. teine blogi',
-        'date' => 'July 2, 2025',
-        'author' => 'Anneli',
-        'content' => 'Täna oli päikseline päev ja ma kirjutasin natuke PHP-d.'
-    ]
-];
-        include __DIR__ . '/../views/us.php';
-        break;
-    default:
-        http_response_code(404);
-        echo '404 Ei leia';
-        break;
+$router = new App\Router($_SERVER['REQUEST_URI']);
+$match =$router->match();
+if($match){
+    if(is_callable($match['action'])){
+       call_user_func($match['action']);
+    } else if(is_array($match['action'])){
+        $className =$match['action'][0];
+        $methodName = $match['action'][1];
+        $controller = new $className();
+        $controller->$methodName();
+    } else {
+        echo '404 Ei leitud lehte';
+    }
+} else {
+    echo '404 Ei leitud lehte';
 }
+
+
