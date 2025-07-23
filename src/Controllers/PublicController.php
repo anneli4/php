@@ -28,7 +28,12 @@ class PublicController {
         $age = $_GET['age'] ?? null;
         include __DIR__ . '/../../views/form.php';
     }
+    
         public function answer(){
+        dump($_GET, $_POST);
+    }
+        public function getAnswer(){
         dump($_GET);
     }
 }
+
