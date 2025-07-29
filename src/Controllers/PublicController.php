@@ -2,24 +2,20 @@
 
 namespace App\Controllers;
 
+use App\DB;
+use App\Models\Post;
+use App\Models\User;
+
 class PublicController {
-
     public function index() {
-            $heroTitle = 'World news';
-                $posts = [
-                    ['title' => 'Blogi 1','date' => 'July 1, 2025','author' => 'Anneli','content' => 'See on minu esimene postitus. Tere tulemast!'],
-                    ['title' => 'Blogi 2','date' => 'July 2, 2025','author' => 'Anneli','content' => 'Täna oli päikseline päev.'],  
-
-         ];
-    include __DIR__ . '/../../views/index.php';
+        $posts = Post::all();
+        $heroTitle = 'World news';   
+        include __DIR__ . '/../../views/index.php';
     }
 
     public function us() {
          $heroTitle = 'U.S. news';
-            $posts = [
-                ['title' => 'U.S esimene blogi','date' => 'July 1, 2025','author' => 'Anneli','content' => 'See on minu esimene postitus. Tere tulemast!'],
-                ['title' => 'U.S. teine blogi','date' => 'July 2, 2025','author' => 'Anneli','content' => 'Täna oli päikseline päev ja ma kirjutasin natuke PHP-d.']
-        ];
+         $posts = Post::all();
     include __DIR__ . '/../../views/us.php';
     }
 

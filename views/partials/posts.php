@@ -4,14 +4,12 @@
 
 <?php foreach ($posts as $post): ?>
     <article class="blog-post">
-        <h2 class="display-5 link-body-emphasis mb-1"><?= htmlspecialchars($post['title']) ?></h2>
-        <p class="blog-post-meta">
-            <?= htmlspecialchars($post['date']) ?> by 
-            <a href="#"><?= htmlspecialchars($post['author']) ?></a>
-        </p>
-        <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+        <h2 class="display-5 link-body-emphasis mb-1"><?= $post->title ?></h2>
+        <p class="blog-post-meta"><?= $post->createdDate()->format('Y-m-d H:i:s') ?> by <a href="#"></a></p>
+        <p><?= $post->body ?></p>
     </article>
 <?php endforeach; ?>
+
 
 <nav class="blog-pagination" aria-label="Pagination">
     <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
