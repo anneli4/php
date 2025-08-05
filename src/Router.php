@@ -12,14 +12,15 @@ class Router {
         $this->method = $method;
     }
 
-    public function match(){
-        foreach(self::$routes as $route){
-            if($route['path'] === $this->path) {
-                return $route;
-            }
+    public function match() {
+    foreach(self::$routes as $route){
+        if($route['path'] === $this->path && $route['method'] === $this->method) {
+            return $route;
         }
-        return false;
     }
+    return false;
+}
+
 
     public static function getRoutes() {
         return self::$routes;

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\DB;
 use DateTime;
 
 class Post extends Model {
-    protected static $table = 'posts'; // Define the table name for this model
+    protected static $table = 'posts';
 
     public $id;
     public $title;
@@ -16,4 +17,6 @@ class Post extends Model {
         return new DateTime($this->created);
     }
 
+    
 }
+
