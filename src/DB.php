@@ -38,15 +38,53 @@ class DB {
         return $stmt->fetch();
     }
     public function insert($table, $fields) {
-    $columns = implode(', ', array_keys($fields));
-    $placeholders = implode(', ', array_map(fn($k) => ":$k", array_keys($fields)));
-    $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        $columns = implode(', ', array_keys($fields));
+        $placeholders = implode(', ', array_map(fn($k) => ":$k", array_keys($fields)));
+        $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        $stmt = $this->conn->prepare($sql);
+
+        foreach ($fields as $key => $value) {
+        $stmt->bindValue(":$key", $value);
+    }
+    $stmt->execute(); // ✅ Only once after all bindings
+
+}
+
+    public function update($table, $fields, $id) {
+    // Build SQL: key1 = :key1, key2 = :key2 ...
+    $updateText = '';
+    foreach ($fields as $key => $value) {
+        $updateText .= "$key = :$key, ";
+    }
+    $updateText = rtrim($updateText, ', ');
+
+    // Prepare SQL
+    $sql = "UPDATE $table SET $updateText WHERE id = :id";
     $stmt = $this->conn->prepare($sql);
 
+    // Bind all field values
     foreach ($fields as $key => $value) {
         $stmt->bindValue(":$key", $value);
     }
+
+    // Bind the ID too
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+    // Execute the query
     $stmt->execute();
 }
 
+public function delete($table, $id) {
+    $sql = "DELETE FROM $table WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
 }
+
+        
+
+    }
+
+
+
+

@@ -21,7 +21,19 @@ abstract class Model {
     public function save() {
         $db = new \App\DB();
         $fields = get_object_vars($this);
-        unset($fields['id']); // Assuming 'id' is auto-incremented and should not be set manually
-        $db->insert(static::$table, $fields);
+        $id = $fields['id'];
+        unset($fields['id']);
+        if($id) {
+            $db->update(static::$table, $fields, $id);
+        } else {
+            $db->insert(static::$table, $fields);
+
+        }
+    }
+    public function delete() {
+        $db = new \App\DB();
+        $fields = get_object_vars($this);
+        $id = $fields['id'];
+        $db->delete(static::$table, $id);
     }
 }

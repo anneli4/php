@@ -32,5 +32,24 @@ class PostsController {
         $post = Post::find($_GET['id']);
         include __DIR__ . '/../../views/posts/edit.php';
     }
+
+    public function update() {
+        $post = Post::find($_GET['id']);
+        $post->title = $_POST['title'];
+        $post->body = $_POST['body'];
+        $post->save();
+        redirect('/admin/posts'); // saadab pärast uuendamist postituste lehele tagasi
+    }
+
+    public function view() {
+        $post = Post::find($_GET['id']);
+        include __DIR__ . '/../../views/posts/view.php';
+    }
+
+    public function destroy() {
+        $post = Post::find($_GET['id']);
+        $post->delete();
+        redirect('/admin/posts'); // saadab pärast uuendamist postituste lehele tagasi
+    }
 }
 

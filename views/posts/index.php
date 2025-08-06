@@ -20,9 +20,9 @@
                 <td><?=$post->createdDate()->format('Y-m-d H:i:s')?></td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-info">View</a>
+                        <a href="/admin/posts/view?id=<?=$post->id?>" class="btn btn-info">View</a>
                         <a href="/admin/posts/edit?id=<?=$post->id?>" class="btn btn-warning">Edit</a>
-                        <a class="btn btn-danger">Delete</a>
+                        <a href="/admin/posts/delete?id=<?=$post->id?>" class="btn btn-danger">Delete</a>
                     </div>
                 </td>
             </tr>
