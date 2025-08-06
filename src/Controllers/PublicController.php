@@ -9,6 +9,10 @@ use App\Models\Post;
 
 class PublicController {
     public function index() {
+       // setcookie('mycookie', 'tasty', time() + 3600, null, null, true, false);
+       // dump($_COOKIE);
+        
+        //dump($_SESSION); //kui cookie väärtust saab muuta siis sessioni oma mitte
         $posts = Post::all();
         $heroTitle = 'World news';   
         include __DIR__ . '/../../views/index.php';

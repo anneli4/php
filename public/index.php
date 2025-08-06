@@ -5,6 +5,10 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
     return false;  
 }
 
+session_start([
+    'cookie_httponly' => true,
+]);
+
 spl_autoload_register(function($class) {
     $parts = explode('\\', $class);
     array_shift($parts); // Remove the namespace part
