@@ -12,7 +12,23 @@
                             <title>Search</title>
                             <circle cx="10.5" cy="10.5" r="7.5"></circle>
                             <path d="M21 21l-5.2-5.2"></path>
-                        </svg> </a> <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a> </div>
+
+                        </svg> 
+                    </a> 
+                    <?php if(auth()): ?>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             <?= auth()->email; ?>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                
+                            </ul>
+                         </div>
+                    <?php else: ?>
+                    <a class="btn btn-sm btn-outline-secondary me-2" href="/register">Sign up</a> 
+                    <a class="btn btn-sm btn-outline-primary" href="/login">Login</a> 
+                    <?php endif; ?>
             </div>
         </header>
         <div class="nav-scroller py-1 mb-3 border-bottom">

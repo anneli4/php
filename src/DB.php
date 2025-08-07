@@ -37,6 +37,16 @@ class DB {
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
         return $stmt->fetch();
     }
+    public function where($table, $class, $field, $value) {
+           // Fetch all posts from the database
+        $stmt = $this->conn->prepare("SELECT * FROM $table WHERE $field = '$value'");
+        $stmt->execute();
+
+        // set the resulting array to associative
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
+        return $stmt->fetchAll();
+    }
+
     public function insert($table, $fields) {
         $columns = implode(', ', array_keys($fields));
         $placeholders = implode(', ', array_map(fn($k) => ":$k", array_keys($fields)));

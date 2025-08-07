@@ -11,6 +11,11 @@ abstract class Model {
         $db = new \App\DB();
         return $db->all(static::$table, static::class);
     }
+    public static function where($field, $value) {
+        // This method can be used to fetch all posts if needed
+        $db = new \App\DB();
+        return $db->where(static::$table, static::class, $field, $value);
+    }
 
     public static function find($id) {
         // This method can be used to fetch all posts if needed
